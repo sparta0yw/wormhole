@@ -1,20 +1,26 @@
 version: v1beta1
+
+# Общие настройки для плагинов protoc
 plugins:
   - name: tsproto
     out: sdk/js-proto-web/src
     path: tools/node_modules/.bin/protoc-gen-ts_proto
     opt:
-      - paths=source_relative
-      - esModuleInterop=true
-      - env=browser
-      - forceLong=string
-      - outputClientImpl=grpc-web
+      - paths=source_relative  # Сохранять относительные пути
+      - esModuleInterop=true   # Поддержка импорта ES-модулей
+      - env=browser            # Сгенерировать код для браузерной среды
+      - forceLong=string       # Преобразование длинных чисел в строку
+      - outputClientImpl=grpc-web  # Использование grpc-web для клиента
+
   - name: tsproto
     out: sdk/js-proto-node/src
     path: tools/node_modules/.bin/protoc-gen-ts_proto
     opt:
-      - paths=source_relative
-      - esModuleInterop=true
-      - env=node
-      - forceLong=string
-      - outputServices=grpc-js
+      - paths=source_relative  # Сохранять относительные пути
+      - esModuleInterop=true   # Поддержка импорта ES-модулей
+      - env=node               # Сгенерировать код для Node.js среды
+      - forceLong=string       # Преобразование длинных чисел в строку
+      - outputServices=grpc-js # Использование grpc-js для сервисов
+
+# Если вам нужно добавить новые пути или параметры для других плагинов
+# просто добавьте их в этот список, и он будет автоматически применен.
